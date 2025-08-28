@@ -23,7 +23,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/vickneee/.git'
+                git branch: 'main', url: 'https://github.com/vickneee/jenkins-docker-demo.git'
             }
         }
 
