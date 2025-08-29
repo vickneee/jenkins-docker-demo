@@ -1,4 +1,5 @@
 # ---- Build stage ----
+# Dockerfile should use the official Maven image
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 
 # Set metadata information
