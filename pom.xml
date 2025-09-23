@@ -74,7 +74,7 @@
         </dependencies>
 
         <build>
-            <finalName>jenkins-docker-demo</finalName>
+            <finalName>jenkins-docker-demo-fat</finalName>
             <plugins>
                 <!-- JaCoCo plugin for code coverage -->
                 <plugin>
@@ -118,6 +118,22 @@
                         <source>17</source>
                         <target>17</target>
                     </configuration>
+                </plugin>
+
+                <!-- Shade plugin to create fat jar -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.5.0</version>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals><goal>shade</goal></goals>
+                            <configuration>
+                                <finalName>jenkins-docker-demo-fat</finalName>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
 
             </plugins>

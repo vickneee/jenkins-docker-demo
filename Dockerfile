@@ -17,8 +17,11 @@ RUN mvn dependency:go-offline
 # Copy the entire project to the container
 COPY . /app/
 
-# Package your application
-RUN mvn package -DskipTests
+# Set headless mode for JavaFX tests
+ENV JAVA_TOOL_OPTIONS="-Djava.awt.headless=true"
+
+# Build fat jar and run tests
+RUN mvn clean package -DskipTests=false
 
 # ---- Run stage ----
 FROM eclipse-temurin:17-jre
@@ -26,7 +29,7 @@ FROM eclipse-temurin:17-jre
 WORKDIR /app
 
 # Copy the packaged application from the build stage
-COPY --from=build /app/target/jenkins-docker-demo.jar .
+COPY --from=build /app/target/jenkins-docker-demo-fat.jar .
 
-# Run the main class (assuming your application has a main class)
-CMD ["java", "-jar", "jenkins-docker-demo.jar"]
+# Do NOT run GUI app here; just expose for later use
+CMD ["java", "-jar", "jenkins-docker-demo-fat.jar"]
