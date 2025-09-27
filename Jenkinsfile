@@ -11,30 +11,7 @@ pipeline {
         maven 'Maven3'    // Match Jenkins global config Manage Jenkins Tools Maven installations
     }
 
-    stage('Check Tools') {
-        steps {
-            sh 'echo $JAVA_HOME'
-            sh 'echo $MAVEN_HOME'
-            sh 'java -version'
-            sh 'mvn -version'
-        }
-    }
-
-    stage('Print Maven Home') {
-        steps {
-            sh 'echo $MAVEN_HOME'
-            sh 'mvn -version'
-        }
-    }
-
     stages {
-        stage('Print Environment') {
-            steps {
-                sh 'echo %PATH%'
-                sh 'java -version'
-                sh 'mvn -version'
-            }
-        }
 
         stage('Checkout') {
             steps {
