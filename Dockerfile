@@ -31,5 +31,8 @@ WORKDIR /app
 # Copy the packaged application from the build stage
 COPY --from=build /app/target/jenkins-docker-demo-fat.jar .
 
+# Run in headless mode
+ENV JAVA_TOOL_OPTIONS="-Djava.awt.headless=true"
+
 # Do NOT run GUI app here; just expose for later use
 CMD ["java", "-jar", "jenkins-docker-demo-fat.jar"]
