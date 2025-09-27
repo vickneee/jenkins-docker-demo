@@ -55,7 +55,6 @@ pipeline {
             steps {
                 script {
                     def app = docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
-                    // sh 'docker build -t $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG .' // Mac
                 }
             }
         }
