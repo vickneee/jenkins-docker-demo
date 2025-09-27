@@ -9,7 +9,7 @@ pipeline {
     }
 
     tools {
-        jdk 'JAVA_HOME'
+        jdk 'JAVA_17'     // Match Jenkins global config Manage Jenkins Tools Java installations
         maven 'Maven3'    // Match Jenkins global config Manage Jenkins Tools Maven installations
     }
 
