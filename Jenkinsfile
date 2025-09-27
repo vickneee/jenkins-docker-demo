@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS_ID = 'vickneee'
+        PATH = "/opt/homebrew/bin:${env.PATH}"
+        DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
         DOCKERHUB_REPO = 'vickneee/jenkins-docker-demo'
         DOCKER_IMAGE_TAG = 'latest'
     }
