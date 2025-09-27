@@ -61,14 +61,13 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        sh '''
-                            docker login -u $DOCKER_USER -p $DOCKER_PASS
-                            docker push $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG
-                        '''
-                    }
+                withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                        docker login -u $DOCKER_USER -p $DOCKER_PASS
+                        docker push $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG
+                    '''
                 }
+
             }
         }
     }
