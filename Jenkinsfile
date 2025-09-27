@@ -31,9 +31,9 @@ pipeline {
     stages {
         stage('Print Environment') {
             steps {
-                bat 'echo %PATH%'
-                bat 'java -version'
-                bat 'mvn -version'
+                sh 'echo %PATH%'
+                sh 'java -version'
+                sh 'mvn -version'
             }
         }
 
