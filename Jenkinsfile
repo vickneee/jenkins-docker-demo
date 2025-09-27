@@ -9,6 +9,7 @@ pipeline {
     }
 
     tools {
+        jdk 'JAVA_HOME'
         maven 'Maven3'    // Match Jenkins global config Manage Jenkins Tools Maven installations
     }
 
@@ -53,8 +54,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'export PATH=$PATH:/opt/homebrew/bin && docker --version'
                     def app = docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
+                    // sh 'docker build -t $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG .'
                 }
             }
         }
@@ -63,7 +64,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', "${DOCKERHUB_CREDENTIALS_ID}") {
-                        docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
+                      def app = docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
+                      app.push()
                     }
                 }
             }
