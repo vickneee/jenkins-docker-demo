@@ -67,7 +67,6 @@ pipeline {
                         docker push $DOCKERHUB_REPO:$DOCKER_IMAGE_TAG
                     '''
                 }
-
             }
         }
     }
