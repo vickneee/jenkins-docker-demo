@@ -53,6 +53,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    sh 'export PATH=$PATH:/opt/homebrew/bin && docker --version'
                     def app = docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
                 }
             }
